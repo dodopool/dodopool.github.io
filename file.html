@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+    <head>
+        <title>Sudoku Solver</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Resetting Script -->
+        <script src="reset.js"></script>
+
+        <!-- Solver Script -->
+        <script src="sudokuSolver.js"></script>
+
+        <!-- Board Validator Script -->
+        <script src = "boardValidator.js"></script>
+
+        <!-- Link the stylesheet -->
+        <link rel = "stylesheet" href = "styleInput.css">
+    </head>
+<body onload = "resetSudoku()">
+  <div class = "container-fluid p-2 bg-dark text-white">
+    <h1 class = "display-5">Sudoku Solver</h1>
+  </div>
+  <br>
+  <center>
+  <input type="text" id="a1" size="3" class = "inputBox"><input type="text" id="a2" size="3" class = "inputBox"><input type="text" id="a3" size="3" class = "inputBox">
+  <input type="text" id="a4" size="3" class = "inputBox"><input type="text" id="a5" size="3" class = "inputBox"><input type="text" id="a6" size="3" class = "inputBox">
+  <input type="text" id="a7" size="3" class = "inputBox"><input type="text" id="a8" size="3" class = "inputBox"><input type="text" id="a9" size="3" class = "inputBox">
+  <br>
+  <input type="text" id="b1" size="3" class = "inputBox"><input type="text" id="b2" size="3" class = "inputBox"><input type="text" id="b3" size="3" class = "inputBox">
+  <input type="text" id="b4" size="3" class = "inputBox"><input type="text" id="b5" size="3" class = "inputBox"><input type="text" id="b6" size="3" class = "inputBox">
+  <input type="text" id="b7" size="3" class = "inputBox"><input type="text" id="b8" size="3" class = "inputBox"><input type="text" id="b9" size="3" class = "inputBox">
+  <br>
+  <input type="text" id="c1" size="3" class = "inputBox"><input type="text" id="c2" size="3" class = "inputBox"><input type="text" id="c3" size="3" class = "inputBox">
+  <input type="text" id="c4" size="3" class = "inputBox"><input type="text" id="c5" size="3" class = "inputBox"><input type="text" id="c6" size="3" class = "inputBox">
+  <input type="text" id="c7" size="3" class = "inputBox"><input type="text" id="c8" size="3" class = "inputBox"><input type="text" id="c9" size="3" class = "inputBox">
+  <br>
+  <input type="text" id="d1" size="3" class = "inputBox"><input type="text" id="d2" size="3" class = "inputBox"><input type="text" id="d3" size="3" class = "inputBox">
+  <input type="text" id="d4" size="3" class = "inputBox"><input type="text" id="d5" size="3" class = "inputBox"><input type="text" id="d6" size="3" class = "inputBox">
+  <input type="text" id="d7" size="3" class = "inputBox"><input type="text" id="d8" size="3" class = "inputBox"><input type="text" id="d9" size="3" class = "inputBox">
+  <br>
+  <input type="text" id="e1" size="3" class = "inputBox"><input type="text" id="e2" size="3" class = "inputBox"><input type="text" id="e3" size="3" class = "inputBox">
+  <input type="text" id="e4" size="3" class = "inputBox"><input type="text" id="e5" size="3" class = "inputBox"><input type="text" id="e6" size="3" class = "inputBox">
+  <input type="text" id="e7" size="3" class = "inputBox"><input type="text" id="e8" size="3" class = "inputBox"><input type="text" id="e9" size="3" class = "inputBox">
+  <br>
+  <input type="text" id="f1" size="3" class = "inputBox"><input type="text" id="f2" size="3" class = "inputBox"><input type="text" id="f3" size="3" class = "inputBox">
+  <input type="text" id="f4" size="3" class = "inputBox"><input type="text" id="f5" size="3" class = "inputBox"><input type="text" id="f6" size="3" class = "inputBox">
+  <input type="text" id="f7" size="3" class = "inputBox"><input type="text" id="f8" size="3" class = "inputBox"><input type="text" id="f9" size="3" class = "inputBox">
+  <br>
+  <input type="text" id="g1" size="3" class = "inputBox"><input type="text" id="g2" size="3" class = "inputBox"><input type="text" id="g3" size="3" class = "inputBox">
+  <input type="text" id="g4" size="3" class = "inputBox"><input type="text" id="g5" size="3" class = "inputBox"><input type="text" id="g6" size="3" class = "inputBox">
+  <input type="text" id="g7" size="3" class = "inputBox"><input type="text" id="g8" size="3" class = "inputBox"><input type="text" id="g9" size="3" class = "inputBox">
+  <br>
+  <input type="text" id="h1" size="3" class = "inputBox"><input type="text" id="h2" size="3" class = "inputBox"><input type="text" id="h3" size="3" class = "inputBox">
+  <input type="text" id="h4" size="3" class = "inputBox"><input type="text" id="h5" size="3" class = "inputBox"><input type="text" id="h6" size="3" class = "inputBox">
+  <input type="text" id="h7" size="3" class = "inputBox"><input type="text" id="h8" size="3" class = "inputBox"><input type="text" id="h9" size="3" class = "inputBox">
+  <br>
+  <input type="text" id="i1" size="3" class = "inputBox"><input type="text" id="i2" size="3" class = "inputBox"><input type="text" id="i3" size="3" class = "inputBox">
+  <input type="text" id="i4" size="3" class = "inputBox"><input type="text" id="i5" size="3" class = "inputBox"><input type="text" id="i6" size="3" class = "inputBox">
+  <input type="text" id="i7" size="3" class = "inputBox"><input type="text" id="i8" size="3" class = "inputBox"><input type="text" id="i9" size="3" class = "inputBox">
+  <br>
+  <br>
+  <button type = "Button" class = "btn btn-success" onclick="solveSudoku()">Solve!</button>
+  <button type = "Button" class = "btn btn-primary" onclick="resetSudoku()">Reset!</button>
+  <br>
+  <br>
+  <input type="text" id="m1" size="3" class = "outputBox" readonly><input type="text" id="m2" size="3" class = "outputBox" readonly><input type="text" id="m3" size="3" class = "outputBox" readonly>
+  <input type="text" id="m4" size="3" class = "outputBox" readonly><input type="text" id="m5" size="3" class = "outputBox" readonly><input type="text" id="m6" size="3" class = "outputBox" readonly>
+  <input type="text" id="m7" size="3" class = "outputBox" readonly><input type="text" id="m8" size="3" class = "outputBox" readonly><input type="text" id="m9" size="3" class = "outputBox" readonly>
+  <br>
+  <input type="text" id="n1" size="3" class = "outputBox" readonly><input type="text" id="n2" size="3" class = "outputBox" readonly><input type="text" id="n3" size="3" class = "outputBox" readonly>
+  <input type="text" id="n4" size="3" class = "outputBox" readonly><input type="text" id="n5" size="3" class = "outputBox" readonly><input type="text" id="n6" size="3" class = "outputBox" readonly>
+  <input type="text" id="n7" size="3" class = "outputBox" readonly><input type="text" id="n8" size="3" class = "outputBox" readonly><input type="text" id="n9" size="3" class = "outputBox" readonly>
+  <br>
+  <input type="text" id="o1" size="3" class = "outputBox" readonly><input type="text" id="o2" size="3" class = "outputBox" readonly><input type="text" id="o3" size="3" class = "outputBox" readonly>
+  <input type="text" id="o4" size="3" class = "outputBox" readonly><input type="text" id="o5" size="3" class = "outputBox" readonly><input type="text" id="o6" size="3" class = "outputBox" readonly>
+  <input type="text" id="o7" size="3" class = "outputBox" readonly><input type="text" id="o8" size="3" class = "outputBox" readonly><input type="text" id="o9" size="3" class = "outputBox" readonly>
+  <br>
+  <input type="text" id="p1" size="3" class = "outputBox" readonly><input type="text" id="p2" size="3" class = "outputBox" readonly><input type="text" id="p3" size="3" class = "outputBox" readonly>
+  <input type="text" id="p4" size="3" class = "outputBox" readonly><input type="text" id="p5" size="3" class = "outputBox" readonly><input type="text" id="p6" size="3" class = "outputBox" readonly>
+  <input type="text" id="p7" size="3" class = "outputBox" readonly><input type="text" id="p8" size="3" class = "outputBox" readonly><input type="text" id="p9" size="3" class = "outputBox" readonly>
+  <br>
+  <input type="text" id="q1" size="3" class = "outputBox" readonly><input type="text" id="q2" size="3" class = "outputBox" readonly><input type="text" id="q3" size="3" class = "outputBox" readonly>
+  <input type="text" id="q4" size="3" class = "outputBox" readonly><input type="text" id="q5" size="3" class = "outputBox" readonly><input type="text" id="q6" size="3" class = "outputBox" readonly>
+  <input type="text" id="q7" size="3" class = "outputBox" readonly><input type="text" id="q8" size="3" class = "outputBox" readonly><input type="text" id="q9" size="3" class = "outputBox" readonly>
+  <br>
+  <input type="text" id="r1" size="3" class = "outputBox" readonly><input type="text" id="r2" size="3" class = "outputBox" readonly><input type="text" id="r3" size="3" class = "outputBox" readonly>
+  <input type="text" id="r4" size="3" class = "outputBox" readonly><input type="text" id="r5" size="3" class = "outputBox" readonly><input type="text" id="r6" size="3" class = "outputBox" readonly>
+  <input type="text" id="r7" size="3" class = "outputBox" readonly><input type="text" id="r8" size="3" class = "outputBox" readonly><input type="text" id="r9" size="3" class = "outputBox" readonly>
+  <br>
+  <input type="text" id="s1" size="3" class = "outputBox" readonly><input type="text" id="s2" size="3" class = "outputBox" readonly><input type="text" id="s3" size="3" class = "outputBox" readonly>
+  <input type="text" id="s4" size="3" class = "outputBox" readonly><input type="text" id="s5" size="3" class = "outputBox" readonly><input type="text" id="s6" size="3" class = "outputBox" readonly>
+  <input type="text" id="s7" size="3" class = "outputBox" readonly><input type="text" id="s8" size="3" class = "outputBox" readonly><input type="text" id="s9" size="3" class = "outputBox" readonly>
+  <br>
+  <input type="text" id="t1" size="3" class = "outputBox" readonly><input type="text" id="t2" size="3" class = "outputBox" readonly><input type="text" id="t3" size="3" class = "outputBox" readonly>
+  <input type="text" id="t4" size="3" class = "outputBox" readonly><input type="text" id="t5" size="3" class = "outputBox" readonly><input type="text" id="t6" size="3" class = "outputBox" readonly>
+  <input type="text" id="t7" size="3" class = "outputBox" readonly><input type="text" id="t8" size="3" class = "outputBox" readonly><input type="text" id="t9" size="3" class = "outputBox" readonly>
+  <br>
+  <input type="text" id="u1" size="3" class = "outputBox" readonly><input type="text" id="u2" size="3" class = "outputBox" readonly><input type="text" id="u3" size="3" class = "outputBox" readonly>
+  <input type="text" id="u4" size="3" class = "outputBox" readonly><input type="text" id="u5" size="3" class = "outputBox" readonly><input type="text" id="u6" size="3" class = "outputBox" readonly>
+  <input type="text" id="u7" size="3" class = "outputBox" readonly><input type="text" id="u8" size="3" class = "outputBox" readonly><input type="text" id="u9" size="3" class = "outputBox" readonly>
+  <br>
+  <br>
+
+  <div class = "container-fluid bg-dark" id = "resultDivMessage">
+  <p id = "resultMessage"></p>
+  </div>
+  </center>
+</body>
+</html>
+
+<script>
+
+  function solveSudoku() {
+
+      resetOutputArea();
+
+      let a1 = Number (document.getElementById("a1").value);
+      let a2 = Number (document.getElementById("a2").value);
+      let a3 = Number (document.getElementById("a3").value);
+      let a4 = Number (document.getElementById("a4").value);
+      let a5 = Number (document.getElementById("a5").value);
+      let a6 = Number (document.getElementById("a6").value);
+      let a7 = Number (document.getElementById("a7").value);
+      let a8 = Number (document.getElementById("a8").value);
+      let a9 = Number (document.getElementById("a9").value);
+
+      let b1 = Number (document.getElementById("b1").value);
+      let b2 = Number (document.getElementById("b2").value);
+      let b3 = Number (document.getElementById("b3").value);
+      let b4 = Number (document.getElementById("b4").value);
+      let b5 = Number (document.getElementById("b5").value);
+      let b6 = Number (document.getElementById("b6").value);
+      let b7 = Number (document.getElementById("b7").value);
+      let b8 = Number (document.getElementById("b8").value);
+      let b9 = Number (document.getElementById("b9").value);
+
+      let c1 = Number (document.getElementById("c1").value);
+      let c2 = Number (document.getElementById("c2").value);
+      let c3 = Number (document.getElementById("c3").value);
+      let c4 = Number (document.getElementById("c4").value);
+      let c5 = Number (document.getElementById("c5").value);
+      let c6 = Number (document.getElementById("c6").value);
+      let c7 = Number (document.getElementById("c7").value);
+      let c8 = Number (document.getElementById("c8").value);
+      let c9 = Number (document.getElementById("c9").value);
+
+      let d1 = Number (document.getElementById("d1").value);
+      let d2 = Number (document.getElementById("d2").value);
+      let d3 = Number (document.getElementById("d3").value);
+      let d4 = Number (document.getElementById("d4").value);
+      let d5 = Number (document.getElementById("d5").value);
+      let d6 = Number (document.getElementById("d6").value);
+      let d7 = Number (document.getElementById("d7").value);
+      let d8 = Number (document.getElementById("d8").value);
+      let d9 = Number (document.getElementById("d9").value);
+
+      let e1 = Number (document.getElementById("e1").value);
+      let e2 = Number (document.getElementById("e2").value);
+      let e3 = Number (document.getElementById("e3").value);
+      let e4 = Number (document.getElementById("e4").value);
+      let e5 = Number (document.getElementById("e5").value);
+      let e6 = Number (document.getElementById("e6").value);
+      let e7 = Number (document.getElementById("e7").value);
+      let e8 = Number (document.getElementById("e8").value);
+      let e9 = Number (document.getElementById("e9").value);
+
+      let f1 = Number (document.getElementById("f1").value);
+      let f2 = Number (document.getElementById("f2").value);
+      let f3 = Number (document.getElementById("f3").value);
+      let f4 = Number (document.getElementById("f4").value);
+      let f5 = Number (document.getElementById("f5").value);
+      let f6 = Number (document.getElementById("f6").value);
+      let f7 = Number (document.getElementById("f7").value);
+      let f8 = Number (document.getElementById("f8").value);
+      let f9 = Number (document.getElementById("f9").value);
+
+      let g1 = Number (document.getElementById("g1").value);
+      let g2 = Number (document.getElementById("g2").value);
+      let g3 = Number (document.getElementById("g3").value);
+      let g4 = Number (document.getElementById("g4").value);
+      let g5 = Number (document.getElementById("g5").value);
+      let g6 = Number (document.getElementById("g6").value);
+      let g7 = Number (document.getElementById("g7").value);
+      let g8 = Number (document.getElementById("g8").value);
+      let g9 = Number (document.getElementById("g9").value);
+
+      let h1 = Number (document.getElementById("h1").value);
+      let h2 = Number (document.getElementById("h2").value);
+      let h3 = Number (document.getElementById("h3").value);
+      let h4 = Number (document.getElementById("h4").value);
+      let h5 = Number (document.getElementById("h5").value);
+      let h6 = Number (document.getElementById("h6").value);
+      let h7 = Number (document.getElementById("h7").value);
+      let h8 = Number (document.getElementById("h8").value);
+      let h9 = Number (document.getElementById("h9").value);
+
+      let i1 = Number (document.getElementById("i1").value);
+      let i2 = Number (document.getElementById("i2").value);
+      let i3 = Number (document.getElementById("i3").value);
+      let i4 = Number (document.getElementById("i4").value);
+      let i5 = Number (document.getElementById("i5").value);
+      let i6 = Number (document.getElementById("i6").value);
+      let i7 = Number (document.getElementById("i7").value);
+      let i8 = Number (document.getElementById("i8").value);
+      let i9 = Number (document.getElementById("i9").value);
+
+      let board = [];
+      board.push([a1,a2,a3,a4,a5,a6,a7,a8,a9]);
+      board.push([b1,b2,b3,b4,b5,b6,b7,b8,b9]);
+      board.push([c1,c2,c3,c4,c5,c6,c7,c8,c9]);
+      board.push([d1,d2,d3,d4,d5,d6,d7,d8,d9]);
+      board.push([e1,e2,e3,e4,e5,e6,e7,e8,e9]);
+      board.push([f1,f2,f3,f4,f5,f6,f7,f8,f9]);
+      board.push([g1,g2,g3,g4,g5,g6,g7,g8,g9]);
+      board.push([h1,h2,h3,h4,h5,h6,h7,h8,h9]);
+      board.push([i1,i2,i3,i4,i5,i6,i7,i8,i9]);
+
+      let validationCheck = validateInput(board);
+
+      if(validationCheck === false){
+          document.getElementById("resultMessage").innerHTML = "";
+          document.getElementById("resultDivMessage").className = "container-fluid bg-warning text-white";
+          document.getElementById("resultMessage").innerHTML = "Invalid input!"
+      }
+      else{
+          let n = board.length;
+
+          let solution = [];
+          let alreadyUsedRow = [];
+          let alreadyUsedCol = [];
+          let alreadyUsedGrid = [];
+
+          for(let i = 0; i < n; i += 1){
+              let mySet = new Set();
+              for(let j = 0; j < n; j += 1){
+                  if(board[i][j] !== -1){
+                      mySet.add(board[i][j]);
+                  }
+              }
+              alreadyUsedRow.push(mySet);
+          }
+
+          for(let i = 0; i < n; i += 1){
+              let mySet = new Set();
+              for(let j = 0; j < n; j += 1){
+                  if(board[j][i] !== -1){
+                      mySet.add(board[j][i]);
+                  }
+              }
+              alreadyUsedCol.push(mySet);
+          }
+
+          for(let i = 0; i < n; i += 1){
+              let mySet = new Set();
+              alreadyUsedGrid.push(mySet);
+          }
+
+          for(let i = 0; i < n; i += 1){
+              for(let j = 0; j < n; j += 1){
+                  if(board[i][j] !== -1){
+                      alreadyUsedGrid[getGridIndex(i, j)].add(board[i][j]);
+                  }
+              }
+          }
+
+          sudoku(board, alreadyUsedRow, alreadyUsedCol, alreadyUsedGrid, 0, 0, solution);
+
+          if(board.length === n){
+              document.getElementById("resultDivMessage").className = "container-fluid bg-success text-white ";
+              document.getElementById("resultMessage").innerHTML = "Solution found!";
+          }
+          else{
+              document.getElementById("resultDivMessage").className = "container-fluid bg-danger text-white";
+              document.getElementById("resultMessage").innerHTML = "No Solution found!"
+          }
+
+          document.getElementById("m1").value=solution[0][0];
+          document.getElementById("m2").value=solution[0][1];
+          document.getElementById("m3").value=solution[0][2];
+          document.getElementById("m4").value=solution[0][3];
+          document.getElementById("m5").value=solution[0][4];
+          document.getElementById("m6").value=solution[0][5];
+          document.getElementById("m7").value=solution[0][6];
+          document.getElementById("m8").value=solution[0][7];
+          document.getElementById("m9").value=solution[0][8];
+
+          document.getElementById("n1").value=solution[1][0];
+          document.getElementById("n2").value=solution[1][1];
+          document.getElementById("n3").value=solution[1][2];
+          document.getElementById("n4").value=solution[1][3];
+          document.getElementById("n5").value=solution[1][4];
+          document.getElementById("n6").value=solution[1][5];
+          document.getElementById("n7").value=solution[1][6];
+          document.getElementById("n8").value=solution[1][7];
+          document.getElementById("n9").value=solution[1][8];
+
+          document.getElementById("o1").value=solution[2][0];
+          document.getElementById("o2").value=solution[2][1];
+          document.getElementById("o3").value=solution[2][2];
+          document.getElementById("o4").value=solution[2][3];
+          document.getElementById("o5").value=solution[2][4];
+          document.getElementById("o6").value=solution[2][5];
+          document.getElementById("o7").value=solution[2][6];
+          document.getElementById("o8").value=solution[2][7];
+          document.getElementById("o9").value=solution[2][8];
+
+          document.getElementById("p1").value=solution[3][0];
+          document.getElementById("p2").value=solution[3][1];
+          document.getElementById("p3").value=solution[3][2];
+          document.getElementById("p4").value=solution[3][3];
+          document.getElementById("p5").value=solution[3][4];
+          document.getElementById("p6").value=solution[3][5];
+          document.getElementById("p7").value=solution[3][6];
+          document.getElementById("p8").value=solution[3][7];
+          document.getElementById("p9").value=solution[3][8];
+
+          document.getElementById("q1").value=solution[4][0];
+          document.getElementById("q2").value=solution[4][1];
+          document.getElementById("q3").value=solution[4][2];
+          document.getElementById("q4").value=solution[4][3];
+          document.getElementById("q5").value=solution[4][4];
+          document.getElementById("q6").value=solution[4][5];
+          document.getElementById("q7").value=solution[4][6];
+          document.getElementById("q8").value=solution[4][7];
+          document.getElementById("q9").value=solution[4][8];
+
+          document.getElementById("r1").value=solution[5][0];
+          document.getElementById("r2").value=solution[5][1];
+          document.getElementById("r3").value=solution[5][2];
+          document.getElementById("r4").value=solution[5][3];
+          document.getElementById("r5").value=solution[5][4];
+          document.getElementById("r6").value=solution[5][5];
+          document.getElementById("r7").value=solution[5][6];
+          document.getElementById("r8").value=solution[5][7];
+          document.getElementById("r9").value=solution[5][8];
+
+          document.getElementById("s1").value=solution[6][0];
+          document.getElementById("s2").value=solution[6][1];
+          document.getElementById("s3").value=solution[6][2];
+          document.getElementById("s4").value=solution[6][3];
+          document.getElementById("s5").value=solution[6][4];
+          document.getElementById("s6").value=solution[6][5];
+          document.getElementById("s7").value=solution[6][6];
+          document.getElementById("s8").value=solution[6][7];
+          document.getElementById("s9").value=solution[6][8];
+
+          document.getElementById("t1").value=solution[7][0];
+          document.getElementById("t2").value=solution[7][1];
+          document.getElementById("t3").value=solution[7][2];
+          document.getElementById("t4").value=solution[7][3];
+          document.getElementById("t5").value=solution[7][4];
+          document.getElementById("t6").value=solution[7][5];
+          document.getElementById("t7").value=solution[7][6];
+          document.getElementById("t8").value=solution[7][7];
+          document.getElementById("t9").value=solution[7][8];
+
+          document.getElementById("u1").value=solution[8][0];
+          document.getElementById("u2").value=solution[8][1];
+          document.getElementById("u3").value=solution[8][2];
+          document.getElementById("u4").value=solution[8][3];
+          document.getElementById("u5").value=solution[8][4];
+          document.getElementById("u6").value=solution[8][5];
+          document.getElementById("u7").value=solution[8][6];
+          document.getElementById("u8").value=solution[8][7];
+          document.getElementById("u9").value=solution[8][8];
+        }
+      }
+  </script>
+
