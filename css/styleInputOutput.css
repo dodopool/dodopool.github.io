@@ -1,0 +1,17 @@
+.inputBox{
+    width: 35px;
+    height: 30px;
+    border-color: grey;
+    border-width: thin;
+    border-radius:5%;
+    text-align: center;
+}
+
+.outputBox{
+    width: 35px;
+    height: 30px;
+    border-color: grey;
+    border-width: thin;
+    border-radius: 5%;
+    text-align: center;
+}
