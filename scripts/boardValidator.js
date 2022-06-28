@@ -43,7 +43,7 @@ function checkInGrid(toCheck, rowNumber, colNumber, board){
             for(let j = 0; j < n; j += 1){
                 let currGridRow = Math.floor(i/3);
                 let currGridCol = Math.floor(j/3);
-                let currGridIndex = gridRow*3 + gridColumn;
+                let currGridIndex = currGridRow*3 + currGridCol;
 
                 if(currGridIndex === gridIndex){
                     if(board[i][j] === toCheck){
